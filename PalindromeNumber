@@ -1,0 +1,11 @@
+public class Solution {
+    public bool IsPalindrome(int x) {
+        var xAsArray = x.ToString();
+        for(int i = 0; i < ((xAsArray.Length + 1 )/ 2); i++) {
+             if(xAsArray[i] != xAsArray[xAsArray.Length - 1 - i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
