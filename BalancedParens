@@ -1,0 +1,29 @@
+public class Solution {
+    public bool IsValid(string s) {
+        Stack myStack = new Stack();
+        foreach(char c in s) {
+           if(c == '(' || c == '[' || c == '{') {
+                myStack.Push(c);
+            }
+            else {
+                if(myStack.Count == 0)
+                    return false;
+                else {
+                    var val = myStack.Pop();
+                    if(c == ')' && (char) val != '(') {
+                        return false;
+                    }
+                    if(c == ']' && (char) val != '[') {
+                        return false;
+                    }
+                    if(c == '}' && (char) val != '{') {
+                        return false;
+                    }
+                }
+            }
+        }
+        if(myStack.Count > 0)
+            return false;
+        return true;
+    }
+}
