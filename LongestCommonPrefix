@@ -1,0 +1,20 @@
+public class Solution {
+    public string LongestCommonPrefix(string[] strs) {
+        int minLength = strs.Min(y=>y.Length);
+        string shortest = strs.FirstOrDefault(x=>x.Length == minLength);
+        bool stop = false;
+        string retVal = "";
+        for(int i = 0; i <= shortest.Length; i++) {
+            foreach(string str in strs) {
+                if(!str.Substring(0, i).Equals(shortest.Substring(0, i))) {
+                    stop = true;
+                }
+            }
+            if(stop)
+                return retVal;
+            else
+                retVal = shortest.Substring(0, i);
+        }
+        return retVal;
+    }
+}
