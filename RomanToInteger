@@ -1,0 +1,44 @@
+public class Solution {
+    public int RomanToInt(string s) {
+        var myDict = new Dictionary<char, int>
+        {
+            { 'I', 1 },
+            { 'V', 5 },
+            { 'X', 10 },
+            { 'L', 50 },
+            { 'C', 100 },
+            { 'D', 500 },
+            { 'M', 1000 }
+        };
+        int total = myDict[s[0]]; 
+        if (s.Length > 1)
+        {
+            for (int i = 1; i < s.Length; i++)
+            {
+                if (s[i] == 'V' || s[i] == 'X')
+                {
+                    if (s[i - 1] == 'I')
+                    {
+                        total = total - 2 * myDict['I'];
+                    }
+                }
+                else if (s[i] == 'L' || s[i] == 'C')
+                {
+                    if (s[i - 1] == 'X')
+                    {
+                        total = total - 2 * myDict['X'];
+                    }
+                }
+                else if (s[i] == 'D' || s[i] == 'M')
+                {
+                    if (s[i - 1] == 'C')
+                    {
+                        total = total - 2 * myDict['C'];
+                    }
+                }
+                total += myDict[s[i]];
+            }
+        }
+        return total;
+    }
+}
